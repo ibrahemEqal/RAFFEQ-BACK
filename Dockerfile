@@ -14,8 +14,7 @@ ENV COMPOSER_MEMORY_LIMIT=-1
 
 COPY . .
 
-RUN composer install --no-dev --optimize-autoloader
-
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
 RUN chown -R www-data:www-data /app/storage /app/bootstrap/cache
 
 CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=${PORT:-10000}
